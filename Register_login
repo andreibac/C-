@@ -1,0 +1,77 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+
+void meniu1()
+{
+    cout << "1. Inregistrare\n";
+    cout << "2. Autentificare\n";
+    cout << ">> ";
+}
+
+void inregistrare()
+{
+    string username, password;
+    cout << "Introduceti un username: ";
+    cin >> username;
+    cout << "Introduceti o parola: ";
+    cin >> password;
+    fstream myFile;
+    myFile.open("baza_date.csv", ios::app); // append
+
+    if(myFile.is_open())
+    {
+        myFile << username << endl << password << endl;
+    }
+
+    myFile.close();
+}
+
+bool autentificare()
+{
+    string username, password, line, un, pw;
+
+    cout << "Utilizator: ";
+    cin >> username;
+    cout << "Parola: ";
+    cin >> password;
+
+    fstream read("baza_date.csv", ios::in); // read
+    if (read.is_open())
+    {
+        // Parcurgere fisier pt a gasi daca exista user si parola
+        while(getline(read, line))
+            if (line == username)
+                un = username;
+            else if (line == password)
+                pw = password;
+    }
+
+    if (un == username && pw == password)
+        return true;
+    else
+        return false;
+}
+
+int main()
+{
+    int choice;
+    meniu1();
+    cin >> choice;
+
+    if (choice == 1)
+        inregistrare();
+    else if (choice == 2)
+    {
+        if (autentificare())
+            cout << "Autentificare reusita !\n";
+
+        else
+            cout << "Autentificare esuata !\n";
+    }
+
+    return 0;
+}
