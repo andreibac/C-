@@ -1,0 +1,290 @@
+#include <iostream>
+
+using namespace std;
+
+void meniu()
+{
+    cout << "Select a function: \n\n";
+    cout << "1. Odd/Even\n";
+    cout << "2. Triangle type\n";
+    cout << "3. Swap values of two variables\n";
+    cout << "4. BMI calculator\n";
+    cout << "5. Two players guessing game\n";
+    cout << "6. Calculator\n";
+    cout << "7. Number of days in month\n";
+    cout << "8. Count digits of a number\n";
+    cout << "9. Reverse digits of a number\n";
+    cout << "\n>> ";
+}
+
+void oddEven()
+{
+    int a;
+    cout << "This app checks if a number is odd/even\nEnter a number >> ";
+    cin >> a;
+
+    if(a % 2 == 0)
+        cout << a << " is an even number !\n";
+    else
+        cout << a << " is an odd number !\n";
+}
+
+void triangleType()
+{
+    float a, b, c;
+    cout << "This app checks the type of triangle" << endl;
+    cout << "Enter the side lengths: \nLength 1 >> ";
+    cin >> a;
+    cout << "Length 2 >> ";
+    cin >> b;
+    cout << "Length 3 >> ";
+    cin >> c;
+
+    if(a == b && b == c)
+        cout << "Equilateral triangle\n";
+    else
+    {
+        if(a != b && a != c && b != c)
+            cout << "Scalene triangle\n";
+        else
+            cout << "Isosceles triangle\n";
+    }
+}
+
+void swapTwoVariables()
+{
+    int a = 5, b = 1;
+    cout << "This app swaps values of two variables\n";
+    cout << "a: ";
+    cin >> a;
+    cout << "b: ";
+    cin >> b;
+
+    /*// Swap 2 variables using a third variable
+    int x, y, t;
+    t = x;
+    x = y;
+    y = t;
+    cout << "x = " << x << ", " << "y = " << y << endl;*/
+
+    // Swap 2 variables without a third variable
+    a = a + b; // 6
+    b = a - b; // 5
+    a = a - b; // 1
+    cout << "a = " << a << ", "<< "b = " << b << endl;
+}
+
+void BMIcalculator()
+{
+    /* BMI calculator = weight / height^2
+       Weight(kg), height(m)
+       Underweight < 18.5
+       Normal weight 18.5 - 25
+       Overweight > 25
+    */
+    float weight, height, bmi;
+    cout << "This app calculates your BMI\nWeight(kg): ";
+    cin >> weight;
+    cout << "Height(m): ";
+    cin >> height;
+    bmi = weight / (height * height);
+    cout << "\n>> Your BMI is " << bmi;
+
+    if (bmi < 18.5)
+        cout << ", you are underweight\n";
+    else if (bmi > 25)
+        cout << ", you are overweight\n";
+    else
+        cout << ", you have a normal weight\n";
+}
+
+void twoPlayersGuessingGame()
+{
+    int hostNum, guestNum, guessCount = 1;
+    bool range = true, bingo = false;
+
+    while (range)
+    {
+        cout << "Player 1, please enter a number between 1-10: ";
+        cin >> hostNum;
+        if (hostNum >= 1 && hostNum <= 10)
+            range = false;
+        else
+            cout << "Please respect the range 1-10 !\n\n";
+    }
+
+    system("clear");
+
+    cout << "Player 2, you have 3 chances to guess player's 1 number\n";
+
+    while (guessCount < 4 && bingo == false)
+    {
+        cout << "Guess " << guessCount << ": ";
+        cin >> guestNum;
+        if (hostNum == guestNum)
+        {
+            cout << "Congratulations !!! You've did it !!!\nThe secret number was " << hostNum << endl;
+            bingo = true;
+        }
+        else
+            guessCount++;
+    }
+    if (guessCount == 4)
+    {
+        cout << "\nNice try but you didn't guessed it!\nThe secret number was " << hostNum << endl;
+    }
+
+    /* Ternary operator
+    (hostNum == guestNum)? cout << "Congratulations !!! You've guessed it !!!\n": cout << "Nice try but you didn't guessed it!\n";
+    */
+
+    /*if (hostNum == guestNum)
+        cout << "Congratulations !!! You've guessed it !!!\n";
+    else
+        cout << "Nice try but you didn't guessed it!\n";*/
+}
+
+void calculator()
+{
+    float n1, n2;
+    char operation;
+
+    cout << "***Basic calculator***\n";
+    cin >> n1 >> operation >> n2;
+
+    switch(operation)
+    {
+    case '+':
+        cout << n1 << operation << n2 << " = " << n1 + n2 << endl;
+        break;
+    case '-':
+        cout << n1 << operation << n2 << " = " << n1 - n2 << endl;
+        break;
+    case '/':
+        cout << n1 << operation << n2 << " = " << n1 / n2 << endl;
+        break;
+    case '*':
+        cout << n1 << operation << n2 << " = " << n1 * n2 << endl;
+        break;
+    default:
+        cout << "Invalid operation\nPlease use one of the following operators: '+', '-', '*', '/'\n";
+    }
+}
+
+void daysInMonth()
+{
+    int year, month;
+    cout << "This app tells you how many days a month has\n";
+    cout << "Enter year: ";
+    cin >> year;
+    cout << "Enter month: ";
+    cin >> month;
+
+    switch(month)
+    {
+    case 2:
+        (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)?
+        cout << "29 days month\n": cout << "28 days month\n";
+        break;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        cout << "30 days month\n";
+        break;
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+        cout << "31 days month\n";
+        break;
+    default:
+        cout << "Invalid operation\n";
+    }
+}
+
+void countDigits()
+{
+    int number, counter = 0;
+
+    cout << "This app counts the digits of a number\n";
+    cout << "Enter a number: ";
+    cin >> number;
+
+    if (number < 0)
+        number = -1 * number;
+
+    while (number > 0)
+    {
+        number /= 10;
+        counter++;
+    }
+    cout << "Your number has " << counter << " digits" << endl;
+}
+
+void reverseNumber()
+{
+    int num, reversedNumber = 0;
+    cout << "This app reverse digits of a number\nEnter number: ";
+    cin >> num;
+
+    while (num > 0)
+    {
+        reversedNumber = reversedNumber * 10 + num % 10;
+        num /= 10;
+    }
+        cout << "Reversed number: " << reversedNumber << endl;
+}
+
+int main()
+{
+    int op;
+    char quit;
+    bool exit = false;
+
+    while (exit == false)
+    {
+        meniu();
+        cin >> op;
+        system("clear");
+
+        if (op == 1)
+            oddEven();
+        else if(op == 2)
+            triangleType();
+        else if(op == 3)
+            swapTwoVariables();
+        else if(op == 4)
+            BMIcalculator();
+        else if(op == 5)
+            twoPlayersGuessingGame();
+        else if(op == 6)
+            calculator();
+        else if(op == 7)
+            daysInMonth();
+        else if(op == 8)
+            countDigits();
+        else if(op == 9)
+            reverseNumber();
+        else
+            cout << "Invalid operation !\n";
+
+        cout << "\nContinue with another operation? y/n >> ";
+        cin >> quit;
+
+        if (quit == 'n' || quit == 'N')
+        {
+            cout << "Bye Bye!";
+            exit = true;
+        }
+        else
+            exit = false;
+
+        system("clear");
+    }
+
+    return 0;
+}
