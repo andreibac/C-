@@ -14,6 +14,8 @@ void meniu()
     cout << "7. Number of days in month\n";
     cout << "8. Count digits of a number\n";
     cout << "9. Reverse digits of a number\n";
+    cout << "10. Pin login\n";
+    cout << "11. Factorial of a number\n";
     cout << "\n>> ";
 }
 
@@ -236,7 +238,67 @@ void reverseNumber()
         reversedNumber = reversedNumber * 10 + num % 10;
         num /= 10;
     }
-        cout << "Reversed number: " << reversedNumber << endl;
+    cout << "Reversed number: " << reversedNumber << endl;
+}
+
+void pinLogin()
+{
+    int pin = 1234, attempts = 1, input;
+
+    do
+    {
+        cout << "Attempt " << attempts << endl;
+        cout << "Enter your PIN: ";
+        cin >> input;
+
+        if (input != pin)
+        {
+            cout << "Wrong PIN !\n\n";
+            attempts++;
+        }
+    }
+    while(attempts <= 3 && pin != input);
+
+    if (attempts <= 3)
+        cout << "Your SIM card has been unblocked!\n";
+    else
+        cout << "3 wrong attempts!\nYour SIM has been blocked!\n";
+}
+
+void factorial()
+{
+    // Example for a factorial
+    // 5! = 1*2*3*4*5 = 120
+
+    int number, factorial = 1;
+
+    cout << "This app calculates the factorial of a number\n";
+    cout << "Enter a number: ";
+    cin >> number;
+
+    if (number < 0)
+    {
+        do
+        {
+            cout << "Please enter a positive number: ";
+            cin >> number;
+        }
+        while (number < 0);
+
+        for (int i = 1; i <= number; i++)
+        {
+            factorial *= i;
+        }
+        cout << number << "! = " << factorial << endl;
+    }
+    else
+    {
+        for (int i = 1; i <= number; i++)
+        {
+            factorial *= i;
+        }
+        cout << number << "! = " << factorial << endl;
+    }
 }
 
 int main()
@@ -269,6 +331,10 @@ int main()
             countDigits();
         else if(op == 9)
             reverseNumber();
+        else if(op == 10)
+            pinLogin();
+        else if(op == 11)
+            factorial();
         else
             cout << "Invalid operation !\n";
 
