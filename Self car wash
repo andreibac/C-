@@ -1,0 +1,98 @@
+#include <iomanip>
+#include <iostream>
+#include <stdlib.h>
+#include <unistd.h>
+using namespace std;
+
+void meniu()
+{
+    cout << "Choose operation\n\n";
+    cout << "1. Active foam\n";
+    cout << "2. Rinsing\n";
+    cout << "3. Waxing\n";
+    cout << "4. Osmosis\n";
+    cout << "5. Exit\n\n";
+    cout << ">> ";
+}
+
+void credit()
+{
+    int x, sum = 0;
+    bool finish = false;
+    cout << "----------------------------------------------\n";
+    cout << "| * Machine does not offer rest              |\n| * Accepts only 1 or 5 euro                 |\n";
+    cout << "| * Complete washing program costs 6 euro    |";
+    cout << "\n----------------------------------------------";
+    cout << "\n\nEnter the money\n";
+    while (finish == false)
+    {
+        cout << ">> ";
+        cin >> x;
+        if (x != 1 && x != 5)
+            cout << "Machine accepts only 1 and 5 euro !!!\n";
+        else
+        {
+            sum += x;
+            cout << "Credit: " << sum << " euro";
+            cout << "\n\n";
+        }
+        if (sum == 6)
+            finish = true;
+    }
+}
+
+void timer(int seconds)
+{
+    while (seconds != -1)
+    {
+        system("clear");
+
+        cout << setfill(' ') << setw(40) << "Remaining time\n";
+        cout << setfill(' ') << setw(43) << " --------------\n";
+        cout << setfill(' ') << setw(30);
+        cout << "| ";
+        cout << setfill('0') << setw(2) << seconds << " seconds |" << endl;
+        cout << setfill(' ') << setw(43) << " --------------\n";
+
+        sleep(1);
+
+        seconds--;
+    }
+}
+
+int main()
+{
+    bool finish = false;
+    int option;
+
+    credit();
+
+    while (finish == false)
+    {
+        meniu();
+        cin >> option;
+        switch(option)
+        {
+        case 1:
+            timer(5);
+            break;
+        case 2:
+            timer(5);
+            break;
+        case 3:
+            timer(3);
+            break;
+        case 4:
+            timer(3);
+            break;
+        case 5:
+            cout << "\nSee you next time !\n";
+            finish = true;
+        }
+
+    }
+
+    return 0;
+}
+
+
