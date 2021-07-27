@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -16,6 +17,8 @@ void meniu()
     cout << "9. Reverse digits of a number\n";
     cout << "10. Pin login\n";
     cout << "11. Factorial of a number\n";
+    cout << "12. Multiplication table\n";
+    cout << "13. Draw a rectangle\n";
     cout << "\n>> ";
 }
 
@@ -301,6 +304,40 @@ void factorial()
     }
 }
 
+void multiplicationTable()
+{
+    for (int i = 1; i < 11; i++)
+    {
+        for (int j = 1; j < 11; j++)
+        {
+            cout << i << " x " << j << " = " << i * j << endl;
+        } cout << endl;
+    }
+}
+
+void drawRetangle()
+{
+    int height, width;
+    char symbol;
+
+    cout << "This app draws a shape\nEnter height: ";
+    cin >> height;
+    cout << "Enter width: ";
+    cin >> width;
+    cout << "Enter symbol: ";
+    cin >> symbol;
+    cout << endl;
+
+    for (int h = 0; h < height; h++)
+    {
+        for (int w = 0; w < width; w++)
+        {
+            cout << setw(5) << symbol;
+        }
+        cout << endl;
+    }
+}
+
 int main()
 {
     int op;
@@ -335,6 +372,10 @@ int main()
             pinLogin();
         else if(op == 11)
             factorial();
+        else if(op == 12)
+            multiplicationTable();
+        else if(op == 13)
+            drawRectangle();
         else
             cout << "Invalid operation !\n";
 
