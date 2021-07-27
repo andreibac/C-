@@ -19,6 +19,7 @@ void meniu()
     cout << "11. Factorial of a number\n";
     cout << "12. Multiplication table\n";
     cout << "13. Draw a rectangle\n";
+    cout << "14. Draw a triangle\n";
     cout << "\n>> ";
 }
 
@@ -338,6 +339,37 @@ void drawRectangle()
     }
 }
 
+void drawTriangle()
+{
+    int length;
+    char symbol;
+
+    cout << "This app draws a triangle\nEnter length: ";
+    cin >> length;
+    cout << "Enter symbol: ";
+    cin >> symbol;
+
+    for (int i = 0; i < length; i++)
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            cout << setw(3) << symbol;
+        }
+        cout << endl;
+    }
+
+    cout << endl << endl;
+
+    for (int i = length; i >= 1; i--)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            cout << setw(3) << symbol;
+        }
+        cout << endl;
+    }
+}
+
 int main()
 {
     int op;
@@ -376,6 +408,8 @@ int main()
             multiplicationTable();
         else if(op == 13)
             drawRectangle();
+        else if(op == 14)
+            drawTriangle();
         else
             cout << "Invalid operation !\n";
 
